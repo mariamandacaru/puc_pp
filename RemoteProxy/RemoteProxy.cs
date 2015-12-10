@@ -4,63 +4,77 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteProxy
+namespace ED_3
 {
     class RemoteProxy
     {
         static void Main(string[] args)
         {
-            ICar car = new ProxyCar(new Driver(16));
-            car.DriveCar();
-
-            car = new ProxyCar(new Driver(25));
-            car.DriveCar();
+            ProxyStub servico = new ProxyStub();
+            servico.f1();
+            servico.f2();
+            servico.f3();
         }
 
-        interface ICar
+        interface ContratoServico
         {
-            void DriveCar();
+            void f1();
+            void f2();
+            void f3();
+        }  
+
+        class Servico : ContratoServico 
+        {				
+	        public void f1(){Console.WriteLine("f1");}
+	        public void f2(){Console.WriteLine("f2");}
+	        public void f3(){Console.WriteLine("f3");}
         }
 
-        //Real Object 
-        public class Car : ICar
+        class ProxySkeleton : ContratoServico
         {
-            public void DriveCar()
-            {
-                Console.WriteLine("Car has been driven!");
-            }
-        }
+	
+	        Servico servico = new Servico();
+	
+	        public void f1(){
+		        Console.WriteLine("skeleton f1");				
+		        servico.f1();
+	        }
 
-        public class Driver
+	        public void f2() 
+	        {
+		        Console.WriteLine("skeleton f2");	
+		        servico.f2();			
+	        }
+
+	        public void f3() 
+	        {	
+		        Console.WriteLine("skeleton f3");	
+		        servico.f3();
+	        }
+
+        }
+ 
+        class ProxyStub : ContratoServico
         {
-            public int Age { get; set; }
+	
+	        ProxySkeleton skeleton = new ProxySkeleton();
+	        public void f1()	{
+	            Console.WriteLine("stub f1");			
+		        skeleton.f1();
+	        }
 
-            public Driver(int age)
-            {
-                this.Age = age;
-            }
-        }
+	        public void f2() 
+	        {
+		        Console.WriteLine("stub f2");	
+		        skeleton.f2();		
+	        }
 
-        //Proxy Object
-        public class ProxyCar : ICar
-        {
-            private Driver driver;
-            private ICar realCar;
+	        public void f3() 
+	        {	
+		        Console.WriteLine("stub f3");	
+		        skeleton.f3();
+	        }
 
-            public ProxyCar(Driver driver)
-            {
-                this.driver = driver;
-                realCar = new Car();
-            }
-
-            public void DriveCar()
-            {
-                if (driver.Age <= 16)
-                    Console.WriteLine("Sorry, the driver is too young to drive.");
-                else
-                    realCar.DriveCar();
-            }
-        }
-
+        } 
     }
 }
