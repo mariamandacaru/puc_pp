@@ -10,15 +10,57 @@ namespace ED_3_Composite
     {
         static void Main(string[] args)
         {
-
+            string expressao = "4 3 +";
+            double resultado = 0;
+            Calculo_Facade calcular = new Calculo_Facade(expressao);
+            resultado = calcular.CalcularRPN();
+            Console.WriteLine(resultado);
+            Console.ReadKey();
         }
 
     }
 
-    //Composite
-    interface Operador {
-        void calcularValor(Stack<Double> values);
+    //--------------Composite-----------------
+    public interface Operador_Composite {
+        void calcularValor(ref Stack<Double> values);
     }
+
+    public class Multiplicacao : Operador_Composite
+    {
+        public void calcularValor(ref Stack<double> stack)
+        {
+            stack.Push(stack.Pop() * stack.Pop());
+        }
+    }
+
+    public class Divisao : Operador_Composite
+    {
+        public void calcularValor(ref Stack<double> stack)
+        {
+            double number = 0;
+            number = stack.Pop();
+            stack.Push(stack.Pop() / number);
+        }
+    }
+
+    public class Adicao : Operador_Composite
+    {
+        public void calcularValor(ref Stack<double> stack)
+        {
+            stack.Push(stack.Pop() + stack.Pop());
+        }
+    }
+
+    public class Subtracao : Operador_Composite
+    {
+        public void calcularValor(ref Stack<double> stack)
+        {
+            double number = 0;
+            number = stack.Pop();
+            stack.Push(stack.Pop() - number);
+        }
+    }
+    //----------------------------------------------
 
     class Calculo_Facade
     {
@@ -29,15 +71,20 @@ namespace ED_3_Composite
             this.rpn = _rpn;
         }
 
-        public decimal CalcularRPN()
+        public double CalcularRPN()
         {
             string[] rpnTokens = rpn.Split(' ');
-            Stack<decimal> stack = new Stack<decimal>();
-            decimal number = decimal.Zero;
+            Stack<double> stack = new Stack<double>();
+            double number = 0;
+
+            Multiplicacao mult = new Multiplicacao();
+            Divisao div = new Divisao();
+            Adicao adicao = new Adicao();
+            Subtracao sub = new Subtracao();
 
             foreach (string token in rpnTokens)
             {
-                if (decimal.TryParse(token, out number))
+                if (double.TryParse(token, out number))
                 {
                     stack.Push(number);
                 }
@@ -47,24 +94,22 @@ namespace ED_3_Composite
                     {
                         case "*":
                             {
-                                stack.Push(stack.Pop() * stack.Pop());
+                                mult.calcularValor(ref stack);
                                 break;
                             }
                         case "/":
                             {
-                                number = stack.Pop();
-                                stack.Push(stack.Pop() / number);
+                                div.calcularValor(ref stack);
                                 break;
                             }
                         case "+":
                             {
-                                stack.Push(stack.Pop() + stack.Pop());
+                                adicao.calcularValor(ref stack);
                                 break;
                             }
                         case "-":
                             {
-                                number = stack.Pop();
-                                stack.Push(stack.Pop() - number);
+                                sub.calcularValor(ref stack);
                                 break;
                             }
                         default:
