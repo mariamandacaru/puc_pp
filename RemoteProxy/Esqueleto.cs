@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ED_3
+namespace ED_3_Proxy
 {
-    class RemoteProxy
+    class Esqueleto
     {
         static void Main(string[] args)
         {

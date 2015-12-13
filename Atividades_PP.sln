@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ED_3", "RemoteProxy\ED_3.csproj", "{DE8F6D4E-445C-4080-BFBC-48A685198F36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ED_3_Proxy", "RemoteProxy\ED_3_Proxy.csproj", "{DE8F6D4E-445C-4080-BFBC-48A685198F36}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ED_4", "ED_4\ED_4.csproj", "{C9D4022E-686C-4559-A81B-C25C4F8EEA24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ED_5", "ED_5\ED_5.csproj", "{4968B084-C1A8-4EB3-8B47-872B3ABAD9A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ED_3_Composite", "ConsoleApplication1\ED_3_Composite.csproj", "{7DF52F80-8395-405C-9A23-B8D41B75FBE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4968B084-C1A8-4EB3-8B47-872B3ABAD9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4968B084-C1A8-4EB3-8B47-872B3ABAD9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4968B084-C1A8-4EB3-8B47-872B3ABAD9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF52F80-8395-405C-9A23-B8D41B75FBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF52F80-8395-405C-9A23-B8D41B75FBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF52F80-8395-405C-9A23-B8D41B75FBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF52F80-8395-405C-9A23-B8D41B75FBE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
