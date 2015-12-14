@@ -10,7 +10,7 @@ namespace ED_3_Composite
     {
         static void Main(string[] args)
         {
-            string expressao = "4 3 +";
+            string expressao = "12 4 /";
             double resultado = 0;
             Calculo_Facade calcular = new Calculo_Facade(expressao);
             resultado = calcular.CalcularRPN();
